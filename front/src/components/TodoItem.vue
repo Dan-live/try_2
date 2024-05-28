@@ -6,13 +6,21 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   props: {
     todo: Object,
   },
   methods: {
     removeTodo() {
-      this.$emit("remove", this.todo.id);
+      axios
+        .delete(`http://localhost:5173/api/todo/${this.todo.id}`)
+        .then(() => {
+          this.$emit("remove", this.todo.id);
+        })
+        .catch((error) => {
+          console.error("Error deleting todo:", error);
+        });
     },
   },
 };
