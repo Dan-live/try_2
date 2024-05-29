@@ -1,11 +1,11 @@
 const db = require("../db");
 class AccountController {
   async createAccount(req, res) {
-    const { name, email, number, password } = req.body;
-    console.log(name, email, number, password);
+    const { name, lastName, email, password } = req.body;
+    console.log(name, lastName, email, password);
     const newAcc = await db.query(
-      "INSERT INTO account (name, email, number, password) values ($1, $2, $3, $4) RETURNING *",
-      [name, email, number, password]
+      'INSERT INTO account (name, "lastName", email, password) values ($1, $2, $3, $4) RETURNING *',
+      [name, lastName, email, password]
     );
     res.json(newAcc.rows[0]);
   }

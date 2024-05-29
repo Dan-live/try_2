@@ -15,8 +15,14 @@ export default {
   methods: {
     addTodo() {
       if (this.newTodoText.trim()) {
-        this.$emit("addTodo", { id: Date.now(), text: this.newTodoText });
+        const users = JSON.parse(localStorage.getItem("user"));
+        const userId = users ? users.id : null;
+        const newText = JSON.parse(localStorage.getItem("todoText"));
+        console.log("новый текст", newText.text);
+        this.newTodoText = newText.text;
+        this.$emit("addTodo", { id: userId, text: this.newTodoText });
         this.newTodoText = "";
+        // console.log(this.newTodoText);
       }
     },
   },

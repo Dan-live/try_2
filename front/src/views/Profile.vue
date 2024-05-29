@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Profile</h1>
-    <p>First Name: {{ user.firstName }}</p>
+    <p>First Name: {{ user.name }}</p>
     <p>Last Name: {{ user.lastName }}</p>
     <p>Email Address: {{ user.email }}</p>
   </div>
@@ -16,12 +16,14 @@ export default {
     };
   },
   created() {
-    const user = JSON.parse(localStorage.getItem("currentUser"));
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log(localStorage.getItem("user"));
     if (user) {
       this.user = user;
     } else {
       // Если пользователь не найден, перенаправляем на страницу входа
-      this.$router.push("/login");
+      //this.$router.push("/login");
+      console.log(localStorage.getItem("user"));
     }
   },
 };
