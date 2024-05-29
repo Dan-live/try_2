@@ -1,38 +1,29 @@
 <template>
-  <div>
-    <h1>Todo List</h1>
-    <nav>
-      <router-link to="/about"><button>About</button></router-link>
-      <router-link to="/profile"><button>Profile</button></router-link>
-      <router-link to="/"><button>Logout</button></router-link>
-      <!-- Возврат на базовую страницу -->
+  <div class="base-container">
+    <h1 class="text-center">Todo List</h1>
+    <nav class="nav-bar">
+      <router-link to="/about" class="btn nav-btn">About</router-link>
+      <router-link to="/profile" class="btn nav-btn">Profile</router-link>
+      <router-link to="/" class="btn nav-btn">Logout</router-link>
     </nav>
-    <!-- <AddTodo ref="addTodoComponent" @addTodo="addTodo" />
-    <ul>
-      <TodoItem
-        v-for="todo in todos"
-        :key="todo.id"
-        :todo="todo"
-        @remove="removeTodo"
+    <div class="todo-input">
+      <input
+        v-model="newTodoText"
+        placeholder="New todo"
+        class="form-control"
       />
-    </ul> -->
-    <div>
-      <input v-model="newTodoText" placeholder="New todo" />
-      <button @click="addTodo">Add</button>
+      <button @click="addTodo" class="btn add-btn">Add</button>
     </div>
-    <ul>
-      <li v-for="todo in todos" :key="todo.id">
+    <ul class="todo-list">
+      <li v-for="todo in todos" :key="todo.id" class="todo-item">
         <span>{{ todo.task }}</span>
-        <button @click="removeTodo(todo.id)">Remove</button>
+        <button @click="removeTodo(todo.id)" class="btn remove-btn">
+          Remove
+        </button>
       </li>
     </ul>
   </div>
-  <!-- <div>
-    <input v-model="newTodoText" placeholder="New todo" />
-    <button @click="addTodo">Add</button>
-  </div> -->
 </template>
-
 <script>
 //import AddTodo from "../components/AddTodo.vue";
 //import TodoItem from "../components/TodoItem.vue";
@@ -53,65 +44,8 @@ export default {
       newTodoText: "",
     };
   },
-  // computed: {
-  //   userId() {
-  //     //return store.getters.currentUser?.id;
-  //     localStorage.getItem("userId");
-  //   },
-  // },
 
   methods: {
-    // loadTodos() {
-    //   // axios
-    //   //   .get(`http://localhost:5173/api/todo/${this.userId}`)
-    //   //   .then((response) => {
-    //   //     this.todos = response.data;
-    //   //   })
-    //   //   .catch((error) => {
-    //   //     console.error("Error loading todos:", error);
-    //   //   });
-    //   console.log("PPP");
-    // },
-
-    // addTodo() {
-    //   // const newTodoText = this.$refs.addTodoComponent.newTodoText;
-    //   // if (newTodoText.trim()) {
-    //   //   const newTodo = { id: this.userId, text: this.newTodoText };
-    //   //   this.$emit("addTodo", { id: Date.now(), text: this.newTodoText });
-    //   //   this.newTodoText = "";
-    //   //   axios
-    //   //     .post(`http://localhost:5173/api/todo/${this.todo.id}`)
-    //   //     .then((response) => {
-    //   //       this.todos.push(response.data);
-    //   //     })
-    //   //     .catch((error) => {
-    //   //       console.error("Error adding todo:", error);
-    //   //     });
-    //   // }
-    //   // this.todos.push(todo);
-
-    //   //if (newTodoText.trim()) {
-    //   //const newTodo = { id: this.userId, text: this.newTodoText };
-    //   //this.$emit("addTodo", { id: Date.now(), text: this.newTodoText });
-    //   //this.newTodoText = "";
-
-    //   // try {
-    //   // const response = await axios.post(
-    //   //   "http://localhost:5173/api/account",
-    //   //   user
-    //   // );}
-    //   //   catch(error)  {
-    //   //     console.error("Error adding todo:", error);
-    //   //   };
-
-    //   //}
-    //   //this.todos.push(todo);
-
-    //   const users = JSON.parse(localStorage.getItem("user"));
-    //   console.log(users.id);
-    //   console.log(localStorage.getItem("user"));
-    //   //console.log("as");
-    // },
     async addTodo(id) {
       const users = JSON.parse(localStorage.getItem("user"));
       const userId = users ? users.id : null;
@@ -139,16 +73,6 @@ export default {
         console.log(response.data);
         console.log(user);
         this.newTodoText = "";
-        // //console.log(response);
-        // if (response.status == 200) {
-        //   // Сохраняем данные в localStorage
-        //   //localStorage.setItem("todo", JSON.stringify(response.data));
-        //   // Переходим на главную страницу
-        //   //this.$router.push("/main-page");
-        // } else {
-        //   // Обрабатываем ошибки
-        //   alert("Registration failed: " + response.data.message);
-        // }
       } catch (error) {
         console.error("An error occurred:", error);
       }
@@ -165,18 +89,117 @@ export default {
           console.error("Error deleting todo:", error);
         });
     },
-    // mounted() {
-    //   this.loadTodos();
-    // },
   },
 };
 </script>
 
 <style scoped>
-nav {
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;700&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css");
+
+body {
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+.base-container {
+  background: url("../assets/background.jpg") no-repeat center center fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh; /* Разрешить контейнеру масштабироваться */
+  padding-top: 50px; /* Поднять содержимое немного вверх */
+}
+
+h1 {
+  font-size: 4vw;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.2vw;
+  margin-bottom: 2%;
+  background-color: #20c997;
+  border-radius: 10px;
+  padding: 20px;
+  width: 25%; /* Уменьшить ширину */
+  min-width: 250px; /* Установить минимальную ширину */
+  text-align: center;
+}
+
+.nav-bar {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.nav-btn {
+  background-color: #20c997;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: #127c5c;
+}
+
+.todo-input {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   margin-bottom: 20px;
 }
-button {
-  margin-right: 10px;
+
+.add-btn {
+  background-color: #20c997;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #127c5c;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  width: 50%;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  color: white;
+  word-wrap: break-word; /* Позволяет переносить текст на новую строку */
+  overflow-wrap: break-word; /* Позволяет переносить текст на новую строку */
+  white-space: pre-wrap; /* Переносит текст на новую строку при необходимости */
+}
+
+.remove-btn {
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 10px;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.remove-btn:hover {
+  background-color: #127c5c;
 }
 </style>

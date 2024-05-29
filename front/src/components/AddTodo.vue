@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <input v-model="newTodoText" placeholder="New todo" />
     <button @click="addTodo">Add</button>
@@ -31,4 +31,4 @@ export default {
 
 <style scoped>
 /* Добавьте стили */
-</style>
+</style> -->

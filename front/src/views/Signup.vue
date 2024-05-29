@@ -1,23 +1,47 @@
 <template>
-  <div>
-    <h1>Signup</h1>
-    <form @submit.prevent="signup">
-      <input v-model="firstName" placeholder="First Name" required />
-      <input v-model="lastName" placeholder="Last Name" required />
-      <input
-        v-model="email"
-        placeholder="Email Address"
-        type="email"
-        required
-      />
-      <input
-        v-model="password"
-        placeholder="Password"
-        type="password"
-        required
-      />
-      <button @click="handleSignup" type="submit">Signup</button>
-    </form>
+  <div class="base-container">
+    <h1 class="text-center">Signup</h1>
+    <div class="sign-up-card">
+      <form @submit.prevent="handleSignup">
+        <div class="form-group">
+          <input
+            v-model="firstName"
+            placeholder="First Name"
+            required
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            v-model="lastName"
+            placeholder="Last Name"
+            required
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            v-model="email"
+            @input="validateEmail"
+            placeholder="Email Address"
+            type="email"
+            required
+            class="form-control"
+          />
+          <div v-if="emailError" class="error">{{ emailError }}</div>
+        </div>
+        <div class="form-group">
+          <input
+            v-model="password"
+            placeholder="Password"
+            type="password"
+            required
+            class="form-control"
+          />
+        </div>
+        <button type="submit" class="btn sign-up-btn">Signup</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -47,7 +71,19 @@ export default {
   //   },
   // },
   methods: {
+    validateEmail() {
+      const emailPattern = /.+@.+/;
+      if (!emailPattern.test(this.email)) {
+        this.emailError = "Invalid email format";
+      } else {
+        this.emailError = "";
+      }
+    },
     async handleSignup() {
+      this.validateEmail();
+      // if (this.emailError) {
+      //   console.log("email error"); // Останавливаем отправку формы, если есть ошибка
+      // }
       const user = {
         name: this.firstName,
         lastName: this.lastName,
@@ -79,56 +115,78 @@ export default {
 };
 </script>
 
-<!-- <script setup>
-import { ref } from "vue";
-import axios from "axios";
-//import { useRoute, useRouter } from "vue-router";
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;700&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css");
 
-//const router = useRouter();
-const _nickname = ref("");
-const _lastName = ref("");
-const _email = ref("");
-// const _number = ref("");
-const _pass = ref("");
-// const _repPass = ref("");
-var errormsg = ref("");
-
-function Submit() {
-  var acc = {
-    name: _nickname.value,
-    lastName: _lastName,
-    email: _email.value,
-    // number: _number.value,
-    password: _pass.value,
-  };
-
-  // if (!validatePhoneNumber(acc.number)) {
-  //   errormsg.value = "Некоректний формат номеру";
-  //   return;
-  // } else if (acc.name.length == 0) {
-  //   errormsg.value = "Некоректний формат імені";
-  //   return;
-  // } else if (acc.password != _repPass.value) {
-  //   errormsg.value = "Паролі не співпадають";
-  //   return;
-  // }
-
-  axios
-    .post("http://localhost:5174/api/account", acc)
-    // .then(() => {
-    //   router.push("/");
-    // })
-    .catch((error) => {
-      console.error("Ошибка при отправке данных:", error);
-    });
+.base-container {
+  background: url("../assets/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-// function validatePhoneNumber(input) {
-//   const pattern = /^\+\d+(\s\d+)*$/;
-//   return pattern.test(input);
-// }
-</script>
+h1 {
+  font-size: 4vw;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.2vw;
+  margin-bottom: 2%;
+  background-color: #20c997;
+  border-radius: 10px;
+  padding: 20px;
+  width: 25%;
+  min-width: 250px;
+  text-align: center;
+}
 
-<style scoped>
-/* Добавьте стили */
-</style> -->
+.sign-up-card {
+  width: 25rem;
+  border-radius: 20px !important;
+  padding: 25px;
+  background-color: #20c997 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.form-control {
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.sign-up-btn {
+  background: transparent !important;
+  border: 2px solid white !important;
+  outline: none !important;
+  transition: 0.2s;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+.sign-up-btn:hover {
+  color: black !important;
+  background: #20c997 !important;
+}
+</style>

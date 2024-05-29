@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <li>
     <span>{{ todo.text }}</span>
     <button @click="removeTodo">Remove</button>
@@ -43,4 +43,4 @@ export default {
 
 <style scoped>
 /* Добавьте стили */
-</style>
+</style> -->

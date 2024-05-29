@@ -1,21 +1,31 @@
 <template>
-  <div>
-    <h1>Login</h1>
-    <form @submit.prevent="login">
-      <input
-        v-model="email"
-        placeholder="Email Address"
-        type="email"
-        required
-      />
-      <input
-        v-model="password"
-        placeholder="Password"
-        type="password"
-        required
-      />
-      <button @click="login" type="submit">Login</button>
-    </form>
+  <div class="base-container">
+    <h1 class="text-center">Log in</h1>
+    <div class="log-in-card">
+      <form @submit.prevent="login">
+        <div class="form-group">
+          <input
+            v-model="email"
+            placeholder="Email Address"
+            type="email"
+            required
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            v-model="password"
+            placeholder="Password"
+            type="password"
+            required
+            class="form-control"
+          />
+        </div>
+        <button @click="login" type="submit" class="btn log-in-btn">
+          Login
+        </button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -72,5 +82,71 @@ export default {
 </script>
 
 <style scoped>
-/* Добавьте стили */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;700&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css");
+
+.base-container {
+  background: url("../assets/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 4vw;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.2vw;
+  margin-bottom: 2%;
+  background-color: #20c997;
+  border-radius: 10px;
+  padding: 20px;
+  width: 25%; /* Уменьшить ширину */
+  min-width: 250px; /* Установить минимальную ширину */
+  text-align: center;
+}
+
+.log-in-card {
+  width: 25rem;
+  border-radius: 20px !important;
+  padding: 25px;
+  background-color: #20c997 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.form-control {
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+}
+
+.log-in-btn {
+  background: transparent !important;
+  border: 2px solid white !important;
+  outline: none !important;
+  transition: 0.2s;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+.log-in-btn:hover {
+  color: black !important;
+  background: #20c997 !important;
+}
 </style>

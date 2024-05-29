@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <AddTodo @addTodo="addTodo" />
     <ul>
@@ -39,4 +39,4 @@ export default {
 
 <style scoped>
 /* Добавьте стили */
-</style>
+</style> -->
