@@ -23,7 +23,7 @@ export default {
     if (user) {
       this.user = user;
     } else {
-      // Если пользователь не найден, перенаправляем на страницу входа
+      // Якщо користувача не знайдено, перенаправляємо на сторінку входу
       //this.$router.push("/login");
       console.log(localStorage.getItem("user"));
     }

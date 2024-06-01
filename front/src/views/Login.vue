@@ -45,7 +45,7 @@ export default {
         email: this.email,
         password: this.password,
       };
-      //const user = JSON.parse(localStorage.getItem("user"));
+
       try {
         const response = await axios.get("http://localhost:5173/api/account", {
           params: user,
@@ -56,31 +56,20 @@ export default {
           response.data &&
           response.data.email === this.email
         ) {
-          // Сохраняем данные в localStorage
+          // Зберігаємо дані в localStorage
           console.log(response.data);
           localStorage.setItem("user", JSON.stringify(response.data));
           //console.log(response);
-          // Переходим на главную страницу
+          // Переходимо на головну сторінку
           this.$router.push("/main-page");
         } else {
-          // Обрабатываем ошибки
+          // Обробляємо помилки
           alert("Invalid email or password: " + response.data.message);
         }
       } catch (error) {
         console.error("An error occurred:", error);
       }
     },
-    // if (
-    //   user &&
-    //   user.email === this.email &&
-    //   user.password === this.password
-    // ) {
-    //   localStorage.setItem("currentUser", JSON.stringify(user)); // Сохраняем текущего пользователя
-    //   this.$router.push("/main-page");
-    // } else {
-    //   alert("Invalid email or password");
-    // }
-    //},
   },
 };
 </script>

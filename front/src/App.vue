@@ -8,6 +8,4 @@ export default {
 };
 </script>
 
-<style scoped>
-/* Добавьте стили */
-</style>
+<style scoped></style>

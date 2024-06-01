@@ -25,19 +25,9 @@
   </div>
 </template>
 <script>
-//import AddTodo from "../components/AddTodo.vue";
-//import TodoItem from "../components/TodoItem.vue";
-
 import axios from "axios";
 import { compile } from "vue";
 export default {
-  components: {
-    //AddTodo,
-    //TodoItem,
-  },
-  // props: {
-  //   todo: Object,
-  // },
   data() {
     return {
       todos: [],

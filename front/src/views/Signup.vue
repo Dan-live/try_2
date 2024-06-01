@@ -57,19 +57,7 @@ export default {
       password: "",
     };
   },
-  // methods: {
-  //   signup() {
-  //     const user = {
-  //       firstName: this.firstName,
-  //       lastName: this.lastName,
-  //       email: this.email,
-  //       password: this.password,
-  //     };
-  //     localStorage.setItem("user", JSON.stringify(user));
-  //     localStorage.setItem("currentUser", JSON.stringify(user)); // Сохраняем текущего пользователя
-  //     this.$router.push("/main-page");
-  //   },
-  // },
+
   methods: {
     validateEmail() {
       const emailPattern = /.+@.+/;
@@ -82,7 +70,7 @@ export default {
     async handleSignup() {
       this.validateEmail();
       // if (this.emailError) {
-      //   console.log("email error"); // Останавливаем отправку формы, если есть ошибка
+      //   console.log("email error"); // Зупиняємо відправлення форми, якщо є помилка
       // }
       const user = {
         name: this.firstName,
@@ -99,12 +87,12 @@ export default {
         );
         //console.log(response);
         if (response.status == 200) {
-          // Сохраняем данные в localStorage
+          // Зберігаємо в localStorage
           localStorage.setItem("user", JSON.stringify(response.data));
-          // Переходим на главную страницу
+          // Переходимо ан головну сторінку
           this.$router.push("/main-page");
         } else {
-          // Обрабатываем ошибки
+          // Оброблюємо помилки
           alert("Registration failed: " + response.data.message);
         }
       } catch (error) {

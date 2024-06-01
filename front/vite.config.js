@@ -30,7 +30,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3000", // Порт, на котором работает Express
+        target: "http://localhost:3000", // Порт, на якому працює Express
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ""),
