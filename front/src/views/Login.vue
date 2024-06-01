@@ -51,9 +51,13 @@ export default {
           params: user,
         });
         //console.log(response);
-        if (response.status == 200) {
+        if (
+          response.status == 200 &&
+          response.data &&
+          response.data.email === this.email
+        ) {
           // Сохраняем данные в localStorage
-
+          console.log(response.data);
           localStorage.setItem("user", JSON.stringify(response.data));
           //console.log(response);
           // Переходим на главную страницу
@@ -106,8 +110,8 @@ h1 {
   background-color: #20c997;
   border-radius: 10px;
   padding: 20px;
-  width: 25%; /* Уменьшить ширину */
-  min-width: 250px; /* Установить минимальную ширину */
+  width: 25%;
+  min-width: 250px;
   text-align: center;
 }
 

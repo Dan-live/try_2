@@ -10,7 +10,7 @@ class ToDoController {
     res.json(newTask.rows[0]);
   }
   async getTask(req, res) {
-    const { accId } = req.body;
+    const { accId } = req.query;
     console.log(accId);
     const rows = await db.query(
       'SELECT * FROM "toDoList" where "accId" = $1 ',

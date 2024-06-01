@@ -29,6 +29,7 @@
 //import TodoItem from "../components/TodoItem.vue";
 
 import axios from "axios";
+import { compile } from "vue";
 export default {
   components: {
     //AddTodo,
@@ -45,7 +46,25 @@ export default {
     };
   },
 
+  created() {
+    this.fetchTodos();
+  },
   methods: {
+    async fetchTodos() {
+      const users = JSON.parse(localStorage.getItem("user"));
+      const userId = users ? users.id : null;
+      try {
+        const response = await axios.get("http://localhost:5173/api/todo", {
+          params: { accId: userId },
+        });
+        this.todos = response.data;
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+      //this.todos.push(response.data);
+      console.log(response.data);
+    },
+
     async addTodo(id) {
       const users = JSON.parse(localStorage.getItem("user"));
       const userId = users ? users.id : null;
@@ -109,8 +128,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 100vh; /* Разрешить контейнеру масштабироваться */
-  padding-top: 50px; /* Поднять содержимое немного вверх */
+  min-height: 100vh;
+  padding-top: 50px;
 }
 
 h1 {
@@ -122,8 +141,8 @@ h1 {
   background-color: #20c997;
   border-radius: 10px;
   padding: 20px;
-  width: 25%; /* Уменьшить ширину */
-  min-width: 250px; /* Установить минимальную ширину */
+  width: 25%;
+  min-width: 250px;
   text-align: center;
 }
 
@@ -184,9 +203,9 @@ h1 {
   padding: 10px 20px;
   margin-bottom: 10px;
   color: white;
-  word-wrap: break-word; /* Позволяет переносить текст на новую строку */
-  overflow-wrap: break-word; /* Позволяет переносить текст на новую строку */
-  white-space: pre-wrap; /* Переносит текст на новую строку при необходимости */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .remove-btn {

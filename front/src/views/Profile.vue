@@ -56,8 +56,8 @@ h1 {
   background-color: #20c997;
   border-radius: 10px;
   padding: 20px;
-  width: 25%; /* Уменьшить ширину */
-  min-width: 250px; /* Установить минимальную ширину */
+  width: 25%;
+  min-width: 250px;
   text-align: center;
 }
 

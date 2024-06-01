@@ -39,8 +39,8 @@ h1 {
   background-color: #20c997;
   border-radius: 10px;
   padding: 20px;
-  width: 25%; /* Уменьшить ширину */
-  min-width: 250px; /* Установить минимальную ширину */
+  width: 25%;
+  min-width: 250px;
   text-align: center;
 }
 
@@ -53,7 +53,7 @@ h1 {
 
 .btn {
   display: inline-block;
-  padding: 1vw 4vw; /* Сделать кнопки шире */
+  padding: 1vw 4vw;
   margin-bottom: 2%;
   text-decoration: none;
   color: #fff;
@@ -62,7 +62,7 @@ h1 {
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 200px; /* Установить фиксированную ширину */
+  width: 200px;
   text-align: center;
 }
 
